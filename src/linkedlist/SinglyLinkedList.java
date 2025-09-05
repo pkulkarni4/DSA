@@ -6,12 +6,15 @@ public class SinglyLinkedList {
         ll.insertFirst(1);
         ll.insertAtEnd(2);
         ll.insertAtEnd(3);
-        ll.print();
+       // ll.print();
         System.out.println(ll.size());
        // ll.deleteByIndex(1);
-        ll.delete(3);
-        ll.print();
+       // ll.delete(3);
+        //ll.print();
         System.out.println(ll.size());
+
+        ll.rearrange((3));
+        ll.print();
     }
 }
 
@@ -141,23 +144,24 @@ class LinkedList implements LinkedListInt {
         }
         return false;
     }
+
+    public void rearrange(int n) {
+        LinkedListINode curr = head;
+        head = curr;
+        tail = curr;
+
+        while(curr != null) {
+            LinkedListINode nextNode = curr.next;
+            if(curr.data < n) {
+                curr.next = head;
+                head = curr;
+            } else {
+                tail.next = curr;
+                tail = curr;
+            }
+            curr = curr.next;
+        }
+        tail.next = null;
+    }
 }
 
-class LinkedListINode {
-    int data;
-    LinkedListINode next;
-
-    public LinkedListINode(int data) {
-        this.data = data;
-    }
-
-    public LinkedListINode() {
-    }
-
-    @Override
-    public String toString() {
-        return "LinkedListINode {" +
-                " data = " + data + " } ";
-
-    }
-}

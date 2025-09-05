@@ -1,27 +1,73 @@
 package linkedlist;
 
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RemoveDuplicates {
     public static void main(String[] args) {
-        LinkedList<Integer> ll = new LinkedList<>();
-        ll.add(1);
-        ll.add(2);
-        ll.add(3);
-        ll.add(1);
-        ll.add(1);
-        ll.add(1);
-        printLinkedList(ll);
-    }
+        LinkedListINode head = LinkedListINodeUtil.getLinkedListINode();
 
-    static void printLinkedList(LinkedList<Integer> ll) {
-        if(ll != null) {
-           // while()
-        }
+        //RemoveAllRepeatingNumbersSolution ss= new RemoveAllRepeatingNumbersSolution();
+        //head = ss.removeElements(head, 6);
+
+        SolutionRemoveDuplicates s = new SolutionRemoveDuplicates();
+        //s.UsingMap(head);
+        s.usingTwoPointers(head);
+        // print
+        LinkedListINodeUtil.printLinkedListINode(head);
     }
 }
 
 class SolutionRemoveDuplicates {
-    public void UsingMap(){}
-    public void withoutUsingMap(){}
+    // time complexity: O(n)
+    // space complexity: O(n)
+    public void UsingMap(LinkedListINode node) {
+        Set<Integer> set = new HashSet<>();
+        LinkedListINode current = node;
+        LinkedListINode prev = null;
+        while (current != null) {
+            if (set.contains(current.data)) {
+                prev.next = current.next;
+            } else {
+                set.add(current.data);
+                prev = current;
+            }
+            current = current.next;
+        }
+    }
+
+    // time complexity: O(n^2)
+    // space complexity: O(1)
+    public void usingTwoPointers(LinkedListINode head) {
+        LinkedListINode curr = head;
+        while(curr != null){
+            LinkedListINode runner = curr;
+            while(runner.next != null){
+                if(runner.next.data == curr.data) {
+                    runner.next = runner.next.next;
+                } else{
+                    runner = runner.next;
+                }
+            }
+            curr = curr.next;
+        }
+    }
+}
+
+class RemoveAllRepeatingNumbersSolution {
+    public LinkedListINode removeElements(LinkedListINode head, int val) {
+        while(head != null && head.data == val) {
+            head = head.next;
+        }
+
+        LinkedListINode curr = head;
+        while(curr!=null && curr.next!=null) {
+            if(curr.next.data == val) {
+                curr.next = curr.next.next;
+            } else{
+                curr = curr.next;
+            }
+        }
+        return head;
+    }
 }
