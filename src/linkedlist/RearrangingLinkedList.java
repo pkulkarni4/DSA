@@ -19,6 +19,7 @@ public class RearrangingLinkedList {
 }
 
 class RearrangingLinkedListSolution {
+
     public LinkedListINode rearrange(LinkedListINode head, int val) {
         // if curr.data < 3, then it goes to left
         // otherwise, it goes to right
