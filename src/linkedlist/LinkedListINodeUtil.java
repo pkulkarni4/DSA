@@ -56,9 +56,11 @@ public class LinkedListINodeUtil {
     static void printLinkedListINode(LinkedListINode head) {
         LinkedListINode curr = head;
         while (curr != null) {
-            System.out.println(curr.data);
+            System.out.print(curr.data + " -> ");
             curr = curr.next;
         }
+        System.out.print("null");
+        System.out.println();
     }
 
     public static LinkedListINode getSortedLinkedListINodesWithDuplicates() {
