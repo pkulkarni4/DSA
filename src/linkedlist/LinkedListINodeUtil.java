@@ -63,6 +63,22 @@ public class LinkedListINodeUtil {
         System.out.println();
     }
 
+    public static LinkedListINode getLinkedListWithCycle() {
+        LinkedListINode head = new LinkedListINode(1);
+        LinkedListINode node1 = new LinkedListINode(2);
+        LinkedListINode node2 = new LinkedListINode(3);
+        LinkedListINode node3 = new LinkedListINode(4);
+        LinkedListINode node4 = new LinkedListINode(5);
+
+        head.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node1;
+
+        return head;
+    }
+
     public static LinkedListINode getSortedLinkedListINodesWithDuplicates() {
         LinkedListINode head = new LinkedListINode(1);
         LinkedListINode node1 = new LinkedListINode(2);
@@ -86,6 +102,34 @@ public class LinkedListINodeUtil {
         node7.next = node8;
         node8.next = node9;
         node9.next = node10;
+        return head;
+    }
+
+    public static LinkedListINode getOddPalindromeLinkedList() {
+        LinkedListINode head = new LinkedListINode(1);
+        LinkedListINode node1 = new LinkedListINode(2);
+        LinkedListINode node2 = new LinkedListINode(3);
+        LinkedListINode node3 = new LinkedListINode(2);
+        LinkedListINode node4 = new LinkedListINode(1);
+
+        head.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+
+        return head;
+    }
+
+    public static LinkedListINode getEvenPalindromeLinkedList() {
+        LinkedListINode head = new LinkedListINode(1);
+        LinkedListINode node1 = new LinkedListINode(2);
+        LinkedListINode node2 = new LinkedListINode(2);
+        LinkedListINode node3 = new LinkedListINode(1);
+
+        head.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+
         return head;
     }
 }
