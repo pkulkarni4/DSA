@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class RemoveDuplicates {
     public static void main(String[] args) {
-        LinkedListINode head = LinkedListINodeUtil.getLinkedListINode();
+        LinkedListINode head = LinkedListINodeUtil.getSortedLinkedListINodesWithDuplicates();
 
         //RemoveAllRepeatingNumbersSolution ss= new RemoveAllRepeatingNumbersSolution();
         //head = ss.removeElements(head, 6);
