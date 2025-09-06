@@ -28,11 +28,11 @@ public class LinkedListINodeUtil {
     }
 
     public static LinkedListINode get5LinkedListINode() {
-        LinkedListINode head = new LinkedListINode(1);
-        LinkedListINode node1 = new LinkedListINode(2);
+        LinkedListINode head = new LinkedListINode(5);
+        LinkedListINode node1 = new LinkedListINode(4);
         LinkedListINode node2 = new LinkedListINode(3);
-        LinkedListINode node3 = new LinkedListINode(4);
-        LinkedListINode node4 = new LinkedListINode(5);
+        LinkedListINode node3 = new LinkedListINode(2);
+        LinkedListINode node4 = new LinkedListINode(1);
 
         head.next = node1;
         node1.next = node2;

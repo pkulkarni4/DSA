@@ -31,8 +31,12 @@ public class AddTwoNumbers {
         LinkedListINodeUtil.printLinkedListINode(l2);
 
         LinkedListINode sum = ss.addTwoNumbers(l1, l2);
-        LinkedListINodeUtil.printLinkedListINode(sum);
+        //LinkedListINodeUtil.printLinkedListINode(sum);
+        ReverseLinkedListSolution rev = new ReverseLinkedListSolution();
+        LinkedListINode finalSum = rev.reverseLinkedList(sum);
+        LinkedListINodeUtil.printLinkedListINode(finalSum);
     }
+
 }
 
 class AddTwoNumbersSolution {
@@ -56,5 +60,4 @@ class AddTwoNumbersSolution {
         sumNode.next = addTwoNums(p == null ? null : p.next, q == null ? null : q.next, sum >= 10 ? 1 : 0);
         return sumNode;
     }
-
 }
