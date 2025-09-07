@@ -120,6 +120,30 @@ public class LinkedListINodeUtil {
         return head;
     }
 
+    public static LinkedListINode getSorted3LinkedList() {
+        LinkedListINode head = new LinkedListINode(1);
+        LinkedListINode node1 = new LinkedListINode(2);
+        LinkedListINode node2 = new LinkedListINode(3);
+
+        head.next = node1;
+        node1.next = node2;
+
+        return head;
+    }
+
+    public static LinkedListINode getSorted4LinkedList() {
+        LinkedListINode head = new LinkedListINode(4);
+        LinkedListINode node1 = new LinkedListINode(5);
+        LinkedListINode node2 = new LinkedListINode(6);
+        LinkedListINode node3 = new LinkedListINode(7);
+
+        head.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+
+        return head;
+    }
+
     public static LinkedListINode getEvenPalindromeLinkedList() {
         LinkedListINode head = new LinkedListINode(1);
         LinkedListINode node1 = new LinkedListINode(2);
