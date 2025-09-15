@@ -18,7 +18,7 @@ public class TestBST {
 
         System.out.println("size : " + tree.size());
 
-        System.out.println("height of the tree: "+ tree.height());
+        System.out.println("height of the tree: " + tree.height());
 
         System.out.println("min element: " + tree.findMinimumElement());
         System.out.println("max element: " + tree.findMaximumElement());
@@ -42,5 +42,12 @@ public class TestBST {
         System.out.println("size: " + tree.size());
         System.out.print(" LEVEL ORDER : ");
         tree.print(TraversalOrder.LEVEL);
+
+        ///  create bst with sorted array
+        Tree tree1 = new BinarySearchTree();
+        tree1.create(new int[]{1, 2, 3, 4, 5, 6, 7});
+        System.out.println("\nsize: " + tree1.size());
+        System.out.print(" LEVEL ORDER : ");
+        tree1.print(TraversalOrder.LEVEL);
     }
 }

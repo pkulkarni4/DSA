@@ -3,6 +3,8 @@ package trees;
 public interface Tree {
     boolean insert(int element);
 
+    boolean create(int[] sortedArray);
+
     void print(TraversalOrder order);
 
     boolean delete(int element);

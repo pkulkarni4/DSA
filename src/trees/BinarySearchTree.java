@@ -17,6 +17,28 @@ public class BinarySearchTree implements Tree {
     int size;
 
     @Override
+    public boolean create(int[] nums) {
+        if (nums == null) return false;
+        int len = nums.length;
+        if (len <= 0) return false;
+
+        root = BSTCreateHelper(nums, 0, len - 1);
+
+        return true;
+    }
+
+    private Node BSTCreateHelper(int[] nums, int low, int high) {
+        if (low > high) return null;
+
+        int mid = (low + high) / 2;
+        Node root = new Node(nums[mid]);
+        size++;
+        root.setLeft(BSTCreateHelper(nums, low, mid - 1));
+        root.setRight(BSTCreateHelper(nums, mid + 1, high));
+        return root;
+    }
+
+    @Override
     public boolean insert(int element) {
         if (root == null) {
             root = new Node(element);
@@ -53,7 +75,7 @@ public class BinarySearchTree implements Tree {
     }
 
     private int depth(Node curr) {
-        if(curr == null) return 0;
+        if (curr == null) return 0;
         return 0;
     }
 
@@ -66,7 +88,7 @@ public class BinarySearchTree implements Tree {
     }
 
     private int height(Node current) {
-        if(current == null) return -1;
+        if (current == null) return -1;
 
         int leftHeight = height(current.getLeft());
         int rightHeight = height(current.getRight());
