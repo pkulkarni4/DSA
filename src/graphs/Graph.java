@@ -11,4 +11,12 @@ public interface Graph<E> {
     void dfsIterative(E startElement);
 
     void dfsRecursive(E startElement);
+
+    boolean add(E element);
+
+    void bfs(int[][] adjacencyMatrix, E element);
+
+    void dfsIterative(int[][] adjacencyMatrix, E element);
+
+    void dfsRecursive(int[][] adjacencyMatrix, E element);
 }
