@@ -16,6 +16,9 @@ public class BinarySearchTree implements Tree {
     Node root;
     int size;
 
+    /*
+    creates bst based on a sorted array.
+     */
     @Override
     public boolean create(int[] nums) {
         if (nums == null) return false;
@@ -36,6 +39,60 @@ public class BinarySearchTree implements Tree {
         root.setLeft(BSTCreateHelper(nums, low, mid - 1));
         root.setRight(BSTCreateHelper(nums, mid + 1, high));
         return root;
+    }
+
+    @Override
+    public boolean insertLevelOrder(int[] arr) {
+        int len = arr.length;
+        root = insertLevelOrder(arr, len, 0);
+        return true;
+    }
+
+    private Node insertLevelOrder(int[] arr, int len, int i) {
+        Node root = null;
+        if (i < len && arr[i] != -1) {
+            root = new Node(arr[i]);
+            size++;
+            root.setLeft(insertLevelOrder(arr, len, 2 * i + 1));
+            root.setRight(insertLevelOrder(arr, len, 2 * i + 2));
+        }
+        return root;
+    }
+
+    /*
+    given array in preorder traversal of bst. construct a bst.
+    in preorder, first element is the root, then we keep going left and then right.
+    For example, preorder = [10,5,1,7,40,50]
+    10 is root, {5,1,7} will be left nodes as they are smaller and {40,50} will be right nodes
+     */
+    @Override
+    public boolean insertPreOrder(int[] preorder) {
+        int length = preorder.length;
+        root = insertPreOrder(preorder, 0, length - 1);
+        size = length;
+        return true;
+    }
+
+    private Node insertPreOrder(int[] preorder, int start, int end) {
+        if (start > end) return null;
+        Node n = new Node(preorder[start]);
+        if (start == end) return n;
+        // find first element greater than root to divide the array
+        int start_idx = start + 1;
+        int end_idx = end + 1;
+
+        while(start_idx<end_idx){
+            int mid = (start_idx+end_idx)/2;
+            if(preorder[mid] > preorder[start]){
+                end_idx = mid;
+            } else {
+                start_idx = mid + 1;
+            }
+        }
+
+        n.setLeft(insertPreOrder(preorder, start+1, end_idx - 1));
+        n.setRight(insertPreOrder(preorder, start_idx, end));
+        return n;
     }
 
     @Override

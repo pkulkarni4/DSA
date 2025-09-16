@@ -5,6 +5,10 @@ public interface Tree {
 
     boolean create(int[] sortedArray);
 
+    boolean insertLevelOrder(int[] array);
+
+    boolean insertPreOrder(int[] preorder);
+
     void print(TraversalOrder order);
 
     boolean delete(int element);
