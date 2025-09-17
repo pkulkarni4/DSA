@@ -29,14 +29,14 @@ public class SubtreeOfAnotherTree572 {
         s1.setRight(s3);
 
         BinarySearchTree t1 = new BinarySearchTree();
-        t1.insertLevelOrder(new int[]{3,4,5,1,2});
+        t1.constructTreeFromLevelOrder(new int[]{3,4,5,1,2});
         BinarySearchTree t2 = new BinarySearchTree();
-        t2.insertLevelOrder(new int[] {4,1,2});
+        t2.constructTreeFromLevelOrder(new int[] {4,1,2});
 
         BinarySearchTree t3 = new BinarySearchTree();
-        t3.insertLevelOrder(new int[]{3,4,5,1,2, -1, -1, -1, -1, 0}); // -1 acts as null, means skip those nodes
+        t3.constructTreeFromLevelOrder(new int[]{3,4,5,1,2, -1, -1, -1, -1, 0}); // -1 acts as null, means skip those nodes
         BinarySearchTree t4 = new BinarySearchTree();
-        t4.insertLevelOrder(new int[] {4,1,2});
+        t4.constructTreeFromLevelOrder(new int[] {4,1,2});
 
         Solution572 s = new Solution572();
         boolean retVal = s.isSubtree(n1, s1);

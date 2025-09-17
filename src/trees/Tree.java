@@ -3,11 +3,17 @@ package trees;
 public interface Tree {
     boolean insert(int element);
 
-    boolean create(int[] sortedArray);
+    boolean constructTreeFromPreOrderInOrder(int[] sortedArray);
 
-    boolean insertLevelOrder(int[] array);
+    boolean constructTreeFromLevelOrder(int[] array);
 
-    boolean insertPreOrder(int[] preorder);
+    boolean constructTreeFromPreorder(int[] preorder);
+
+    boolean constructTreeFromPreOrderInOrder(int[] preorder, int[] inorder);
+
+    boolean constructTreeFromInOrderPostOrder(int[] inorder, int[] postorder);
+
+    boolean constructTreeFromPreOrderPostOrder(int[] preorder, int[] postorder);
 
     void print(TraversalOrder order);
 

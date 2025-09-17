@@ -1,6 +1,8 @@
 package trees;
 
 import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Queue;
 
 /*
@@ -17,10 +19,113 @@ public class BinarySearchTree implements Tree {
     int size;
 
     /*
-    creates bst based on a sorted array.
+    Creates bst using preorder and inorder traversal
+    The idea is to construct the tree using pre-order traversal. Take the first element of the pre-order array and create root node.
+    Find the index of this node in the in-order array. Create the left subtree using the elements present on left side of root node in in-order array.
+    Similarly create the right subtree using the elements present on the right side of the root node in in-order array.
+
      */
     @Override
-    public boolean create(int[] nums) {
+    public boolean constructTreeFromPreOrderInOrder(int[] preorder, int[] inorder) {
+        int[] preIndex = {0};
+        int start = 0, len = preorder.length - 1;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        root = constructTreeFromPreOrderInOrder(preorder, preIndex, map, start, len);
+        size = inorder.length;
+        return false;
+    }
+
+    private Node constructTreeFromPreOrderInOrder(int[] preorder, int[] preIndex, Map<Integer, Integer> map, int start, int end) {
+        if (start > end) return null;
+        int rootVal = preorder[preIndex[0]];
+        preIndex[0]++;
+
+        Node root = new Node(rootVal);
+
+        // now, find where root lies in inorder
+        int rootIdx = map.get(rootVal);
+
+        root.setLeft(constructTreeFromPreOrderInOrder(preorder, preIndex, map, start, rootIdx - 1));
+        root.setRight(constructTreeFromPreOrderInOrder(preorder, preIndex, map, rootIdx + 1, end));
+
+        return root;
+    }
+
+    @Override
+    public boolean constructTreeFromPreOrderPostOrder(int[] preorder, int[] postorder) {
+        int len = preorder.length;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            map.put(postorder[i], i);
+        }
+        root = constructFromPrePost(preorder, postorder, map, 0, len - 1, 0);
+        size = len;
+        return true;
+    }
+
+    private Node constructFromPrePost(int[] preorder, int[] postorder, Map<Integer, Integer> map, int preStart, int preEnd, int postStart) {
+
+        if (preStart > preEnd) return null;
+        Node root = new Node(preorder[preStart]);
+        if (preStart == preEnd) {
+            return root;
+        }
+
+        int leftVal = preorder[preStart + 1];
+        int mid = map.get(leftVal);
+        int leftSize = mid - postStart + 1;
+
+        root.setLeft(constructFromPrePost(preorder, postorder, map, preStart + 1, preStart + leftSize, postStart));
+        root.setRight(constructFromPrePost(preorder, postorder, map, preStart + leftSize + 1, preEnd, postStart + leftSize));
+
+        return root;
+    }
+
+    /*
+        Creates bst using postorder and inorder traversal. Similar to above method - find root element from postorder which is last element.
+         */
+    @Override
+    public boolean constructTreeFromInOrderPostOrder(int[] inorder, int[] postorder) {
+
+        int start = 0, len = postorder.length - 1;
+        int[] preIndex = {len};
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        root = createTree(postorder, preIndex, map, start, len + 1);
+        size = inorder.length;
+        return false;
+    }
+
+    private Node createTree(int[] postorder, int[] preIndex, Map<Integer, Integer> map, int start, int end) {
+        if (start > end) return null;
+        if (preIndex[0] < 0) return null;
+
+        int rootVal = postorder[preIndex[0]];
+        preIndex[0]--;
+
+        Node root = new Node(rootVal);
+
+        if (start == end) return root;
+
+        // now, find where root lies in inorder
+        Integer rootIdx = map.get(rootVal);
+        if (rootIdx != null) {
+            root.setRight(createTree(postorder, preIndex, map, rootIdx + 1, end));
+            root.setLeft(createTree(postorder, preIndex, map, start, rootIdx - 1));
+        }
+        return root;
+    }
+
+    /*
+        creates bst based on a sorted array.
+         */
+    @Override
+    public boolean constructTreeFromPreOrderInOrder(int[] nums) {
         if (nums == null) return false;
         int len = nums.length;
         if (len <= 0) return false;
@@ -42,7 +147,7 @@ public class BinarySearchTree implements Tree {
     }
 
     @Override
-    public boolean insertLevelOrder(int[] arr) {
+    public boolean constructTreeFromLevelOrder(int[] arr) {
         int len = arr.length;
         root = insertLevelOrder(arr, len, 0);
         return true;
@@ -66,7 +171,7 @@ public class BinarySearchTree implements Tree {
     10 is root, {5,1,7} will be left nodes as they are smaller and {40,50} will be right nodes
      */
     @Override
-    public boolean insertPreOrder(int[] preorder) {
+    public boolean constructTreeFromPreorder(int[] preorder) {
         int length = preorder.length;
         root = insertPreOrder(preorder, 0, length - 1);
         size = length;
@@ -81,16 +186,16 @@ public class BinarySearchTree implements Tree {
         int start_idx = start + 1;
         int end_idx = end + 1;
 
-        while(start_idx<end_idx){
-            int mid = (start_idx+end_idx)/2;
-            if(preorder[mid] > preorder[start]){
+        while (start_idx < end_idx) {
+            int mid = (start_idx + end_idx) / 2;
+            if (preorder[mid] > preorder[start]) {
                 end_idx = mid;
             } else {
                 start_idx = mid + 1;
             }
         }
 
-        n.setLeft(insertPreOrder(preorder, start+1, end_idx - 1));
+        n.setLeft(insertPreOrder(preorder, start + 1, end_idx - 1));
         n.setRight(insertPreOrder(preorder, start_idx, end));
         return n;
     }
