@@ -125,13 +125,13 @@ public class BinarySearchTree implements Tree {
         creates bst based on a sorted array.
          */
     @Override
-    public boolean constructTreeFromPreOrderInOrder(int[] nums) {
+    public boolean constructTreeFromSortedArray(int[] nums) {
         if (nums == null) return false;
         int len = nums.length;
         if (len <= 0) return false;
 
         root = BSTCreateHelper(nums, 0, len - 1);
-
+        size = len;
         return true;
     }
 
@@ -140,7 +140,6 @@ public class BinarySearchTree implements Tree {
 
         int mid = (low + high) / 2;
         Node root = new Node(nums[mid]);
-        size++;
         root.setLeft(BSTCreateHelper(nums, low, mid - 1));
         root.setRight(BSTCreateHelper(nums, mid + 1, high));
         return root;

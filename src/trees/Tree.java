@@ -3,7 +3,7 @@ package trees;
 public interface Tree {
     boolean insert(int element);
 
-    boolean constructTreeFromPreOrderInOrder(int[] sortedArray);
+    boolean constructTreeFromSortedArray(int[] sortedArray);
 
     boolean constructTreeFromLevelOrder(int[] array);
 

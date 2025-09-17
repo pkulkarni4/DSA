@@ -45,11 +45,11 @@ public class TestBST {
 
         ///  create bst with sorted array
         Tree tree1 = new BinarySearchTree();
-        tree1.constructTreeFromPreOrderInOrder(new int[]{1, 2, 3});
-        System.out.println("\nsize: " + tree1.size());
-        System.out.print(" PRE ORDER : ");
+        tree1.constructTreeFromSortedArray(new int[]{-10,-3,0,5,9});
+        System.out.println("\n constructTreeFromSortedArray size: " + tree1.size());
+        System.out.print(" constructTreeFromSortedArray PRE ORDER : ");
         tree1.print(TraversalOrder.PRE);
-        System.out.print(" POST ORDER : ");
+        System.out.print(" constructTreeFromSortedArray POST ORDER : ");
         tree1.print(TraversalOrder.POST);
 
         // create using preorder
