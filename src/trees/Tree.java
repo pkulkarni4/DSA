@@ -32,6 +32,8 @@ public interface Tree {
     int depth();
 
     int height();
+
+    boolean isBalanced();
 }
 
 class Node {

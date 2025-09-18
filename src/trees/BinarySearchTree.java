@@ -248,11 +248,34 @@ public class BinarySearchTree implements Tree {
         return height(root);
     }
 
-    private int height(Node current) {
-        if (current == null) return -1;
+    @Override
+    public boolean isBalanced() {
+        return checkHeight(root) != Integer.MIN_VALUE;
+    }
+
+    int checkHeight(Node node) {
+        if (node == null) return 0;
+        int leftHeight = checkHeight(node.getLeft());
+        if (leftHeight == Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        }
+        int rightHeight = checkHeight(node.getRight());
+        if (rightHeight == Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        }
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return Integer.MIN_VALUE;
+        } else {
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
+
+    int height(Node current) {
+        if (current == null) return 0;
 
         int leftHeight = height(current.getLeft());
         int rightHeight = height(current.getRight());
+
         return Math.max(leftHeight, rightHeight) + 1;
     }
 

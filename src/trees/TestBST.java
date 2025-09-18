@@ -17,6 +17,7 @@ public class TestBST {
         tree.insert(67);
 
         System.out.println("size : " + tree.size());
+        System.out.println("balanced : " + tree.isBalanced());
 
         System.out.println("height of the tree: " + tree.height());
 
@@ -45,7 +46,7 @@ public class TestBST {
 
         ///  create bst with sorted array
         Tree tree1 = new BinarySearchTree();
-        tree1.constructTreeFromSortedArray(new int[]{-10,-3,0,5,9});
+        tree1.constructTreeFromSortedArray(new int[]{-10, -3, 0, 5, 9});
         System.out.println("\n constructTreeFromSortedArray size: " + tree1.size());
         System.out.print(" constructTreeFromSortedArray PRE ORDER : ");
         tree1.print(TraversalOrder.PRE);
@@ -83,6 +84,24 @@ public class TestBST {
         System.out.println("\n tree 5 size " + tree5.size());
         System.out.println(" PRE ORDER ");
         tree5.print(TraversalOrder.PRE);
+
+        System.out.println("balanced: " + tree5.isBalanced());
+
+        Node treeBalancedCheckRoot1 = new Node(3);
+        Node node9 = new Node(9);
+        Node node20 = new Node(20);
+        Node node15 = new Node(15);
+        Node node7 = new Node(7);
+        treeBalancedCheckRoot1.setLeft(node9);
+        treeBalancedCheckRoot1.setRight(node20);
+        node20.setLeft(node15);
+        node20.setRight(node7);
+
+        BinarySearchTree bTree = new BinarySearchTree();
+        int leftHeight = bTree.height(treeBalancedCheckRoot1.getLeft());
+        int rightHeight = bTree.height(treeBalancedCheckRoot1.getRight());
+
+        System.out.println(" btree left height : " + leftHeight + " btree right height : " + rightHeight + " diff : " + Math.abs(leftHeight - rightHeight));
 
     }
 }
