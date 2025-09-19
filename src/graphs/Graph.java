@@ -1,6 +1,11 @@
 package graphs;
 
+import java.util.List;
+import java.util.Map;
+
 public interface Graph<E> {
+
+    Map<E, List<E>> getAdjacencyList();
 
     boolean addEdge(E from, E to);
 

@@ -24,6 +24,11 @@ public class UndirectedGraph<T> implements Graph<T> {
     }
 
     @Override
+    public Map<T, List<T>> getAdjacencyList() {
+        return adjacencyList;
+    }
+
+    @Override
     public boolean addEdge(T from, T to) {
         if (from == null || to == null) return false;
         List<T> adjacents = adjacencyList.get(from);
