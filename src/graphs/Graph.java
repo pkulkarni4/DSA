@@ -19,4 +19,6 @@ public interface Graph<E> {
     void dfsIterative(int[][] adjacencyMatrix, E element);
 
     void dfsRecursive(int[][] adjacencyMatrix, E element);
+
+    boolean isValidTree(E startElement, int totalNodes);
 }

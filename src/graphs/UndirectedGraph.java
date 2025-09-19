@@ -208,6 +208,31 @@ public class UndirectedGraph<T> implements Graph<T> {
         dfsRecursive(adjacencyMatrix, element, visited);
     }
 
+    @Override
+    public boolean isValidTree(T startElement, int totalNodes) {
+        Set<T> visited = new HashSet<>();
+        Stack<T> stack = new Stack<>();
+        stack.push(startElement);
+
+        while (!stack.isEmpty()) {
+            T ele = stack.pop();
+            visited.add(ele);
+            List<T> adjacents = adjacencyList.get(ele);
+            if (adjacents != null && !adjacents.isEmpty()) {
+                for (T elem : adjacents) {
+                    if (elem != null && !visited.contains(elem)) {
+                        stack.push(elem);
+                    } else {
+                        System.out.println(" contains cycle" + elem);
+                        return false;
+                    }
+                }
+            }
+        }
+        System.out.println("visited size: " + visited.size() + "  total nodes: " + totalNodes);
+        return visited.size() == totalNodes;
+    }
+
     private void dfsRecursive(int[][] adjacencyMatrix, T element, Set<T> visited) {
         visited.add(element);
         System.out.println(element + " ");
