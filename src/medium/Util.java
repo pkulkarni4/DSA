@@ -36,4 +36,15 @@ public class Util {
         }
         System.out.print("]\n");
     }
+    public static void printArray(boolean[][] arr) {
+        int m = arr.length, n = arr[0].length;
+        System.out.print("[");
+        for(int i = 0;i<m;i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(arr[i][j] + ", ");
+            }
+            System.out.println(" ");
+        }
+        System.out.print("]\n");
+    }
 }

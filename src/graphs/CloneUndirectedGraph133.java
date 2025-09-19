@@ -76,13 +76,13 @@ class Solution133 {
             Node n = queue.poll();
             List<Node> neighbors = n.neighbors;
             for (Node neighbor : neighbors) {
+                Node value = new Node(neighbor.val);
                 if (!clonedNodes.containsKey(neighbor.val)) {
-                    Node value = new Node(neighbor.val);
                     clonedNodes.put(value.val, value);
                     queue.add(neighbor);
                 }
                 // add new neighbor nodes
-                clonedNodes.get(n.val).neighbors.add(clonedNodes.get(neighbor.val));
+                clonedNodes.get(n.val).neighbors.add(clonedNodes.get(value.val));
             }
         }
         return clonedNodes.get(node.val);
