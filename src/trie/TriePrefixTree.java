@@ -26,6 +26,7 @@ class TrieNode {
     }
 
     public boolean containsKey(char ch) {
+        if (ch > 'z' || ch < 'a') return false;
         return children[ch - 'a'] != null;
     }
 
