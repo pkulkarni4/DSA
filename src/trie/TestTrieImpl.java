@@ -2,16 +2,19 @@ package trie;
 
 public class TestTrieImpl {
     public static void main(String[] args) {
-        Trie t = new Trie();
-        t.insert("apple");
-      //  t.insert("apples");
-        t.insert("ape");
-      //  t.insert("apes");
-      //  t.insert("dad");
-      //  t.insert("daddy");
-        boolean isfound = t.search("apple");
-        System.out.println("apple found? " + isfound);
-       // boolean isStartsWith = t.startsWith("mad");
-      //  System.out.println("starts with dad? " + isStartsWith);
+        TriePrefixTree t = new Trie();
+        t.insert("seen");
+        t.insert("been");
+        t.insert("beat");
+        t.insert("berry");
+        t.insert("meet");
+        t.insert("seat");
+
+        System.out.println("search seen: " + t.search("seen"));
+        System.out.println("search been: " + t.search("been"));
+        System.out.println("starts with be? " + t.startsWith("be"));
+        System.out.println("starts with se? " + t.startsWith("se"));
+
+       // t.print();
     }
 }

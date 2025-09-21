@@ -1,7 +1,5 @@
 package trie;
 
-import java.util.Stack;
-
 public class Trie implements TriePrefixTree {
     TrieNode root;
 
@@ -9,7 +7,7 @@ public class Trie implements TriePrefixTree {
         root = new TrieNode();
     }
 
-
+    @Override
     public void insert(String word) {
         TrieNode curr = root;
         for (char c : word.toCharArray()) {
@@ -22,6 +20,7 @@ public class Trie implements TriePrefixTree {
         curr.setEnd();
     }
 
+    @Override
     public boolean search(String word) {
         TrieNode curr = root;
         for (char c : word.toCharArray()) {
@@ -43,5 +42,25 @@ public class Trie implements TriePrefixTree {
             curr = curr.children[c - 'a'];
         }
         return true;
+    }
+
+    @Override
+    public void print() {
+        TrieNode curr = root;
+        print(curr);
+    }
+
+    private void print(TrieNode curr) {
+        curr.print();
+        if (curr.isEnd()) {
+            return;
+        }
+        TrieNode[] children = curr.children;
+        for (TrieNode c : children) {
+            if (c != null) {
+                System.out.print("\t");
+                print(c);
+            }
+        }
     }
 }
