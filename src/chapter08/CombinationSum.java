@@ -3,6 +3,17 @@ package chapter08;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+LC: 39 Combination Sum
+Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.
+Example:
+Input: candidates = [2,3,6,7], target = 7
+Output: [[2,2,3],[7]]
+
+Input: candidates = [2,3,5], target = 8
+Output: [[2,2,2,2],[2,3,3],[3,5]]
+
+ */
 public class CombinationSum {
     public static void main(String[] args) {
         int[] candidates = {2, 3, 6, 7};
@@ -15,10 +26,17 @@ public class CombinationSum {
         System.out.println(list);
 
         // reset
-        list = new ArrayList<>();
-        current = new ArrayList<>();
-        findUniqueCombinationTargetSum(candidates, target, 0, list, current, 0);
-        System.out.println(list);
+        int[][] examples = {
+                {2, 3, 6, 7},
+                {2,3,5}
+        };
+        int[] targets= {7, 8};
+        for(int i =0;i<examples.length;i++) {
+            list = new ArrayList<>();
+            current = new ArrayList<>();
+            findUniqueCombinationTargetSum(examples[i], targets[i], 0, list, current, 0);
+            System.out.println(list);
+        }
     }
 
     static void findAllCombinationsTargetSum(int[] candidates, int len, int target, List<List<Integer>> list, List<Integer> current, int index) {
