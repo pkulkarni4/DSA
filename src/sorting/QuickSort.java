@@ -7,7 +7,9 @@ public class QuickSort {
         int[][] examples = {
                 {20, 10, 20, 30, 20, 40},
                 {5, 3, 1, 2, 4},
-                {4, 2, 5, 1, 6, 7, 3}
+                {4, 2, 5, 1, 6, 7},
+                {5, 2, 3, 1},
+                {5, 1, 1, 2, 0, 0}
         };
         QuickSort quickSort = new QuickSort();
         for (int[] arr : examples) {
@@ -20,7 +22,7 @@ public class QuickSort {
         if (left < right) {
             int m = partition(arr, left, right);
             sort(arr, left, m - 1);
-            sort(arr, m, right);
+            sort(arr, m + 1, right);
         }
     }
 

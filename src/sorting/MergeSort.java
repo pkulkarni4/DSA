@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.Arrays;
+
 /*
 Merge sort - divide and conquer
  */
@@ -7,17 +9,20 @@ public class MergeSort {
     public static void main(String[] args) {
         int[][] examples = {
                 {20, 10, 20, 30, 20, 40},
-                {5, 3, 1, 2, 4}
+                {5, 3, 1, 2, 4},
+                {5, 2, 3, 1}
         };
         MergeSort mergeSort = new MergeSort();
         for (int[] arr : examples) {
-            mergeSort.mergeSort(arr, 0, arr.length - 1);
+            int[] nums = mergeSort.sortArray(arr, 0, arr.length - 1);
             // print arr
-            for (int i : arr) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
+            System.out.println("Sorted: " + Arrays.toString(nums));
         }
+    }
+
+    int[] sortArray(int[] arr, int start, int end) {
+        mergeSort(arr, start, end);
+        return arr;
     }
 
     void mergeSort(int[] arr, int start, int end) {
