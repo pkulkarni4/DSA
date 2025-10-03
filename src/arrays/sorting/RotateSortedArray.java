@@ -1,4 +1,4 @@
-package arrays;
+package arrays.sorting;
 
 public class RotateSortedArray implements RotateArray {
     public static void main(String[] args) {

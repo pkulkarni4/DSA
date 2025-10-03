@@ -1,4 +1,4 @@
-package arrays;
+package arrays.sorting;
 
 /*
 Problem: Imagine that you have k sorted arrays of different lengths.

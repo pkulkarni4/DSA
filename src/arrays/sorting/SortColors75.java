@@ -1,4 +1,4 @@
-package arrays;
+package arrays.sorting;
 
 public class SortColors75 {
     public static void main(String[] args) {
